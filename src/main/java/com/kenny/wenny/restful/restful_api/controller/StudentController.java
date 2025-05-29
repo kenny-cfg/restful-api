@@ -25,6 +25,12 @@ public class StudentController {
         return student.isPresent() ? ResponseEntity.ok(student.get()) : ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/byName")
+    public ResponseEntity<Student> getStudentByNameInQueryString(@RequestParam String name) {
+        val student = studentService.getByName(name);
+        return student.isPresent() ? ResponseEntity.ok(student.get()) : ResponseEntity.notFound().build();
+    }
+
     @GetMapping
     public ResponseEntity<List<Student>> getAllStudents() {
         val students = studentService.getAllStudents();
