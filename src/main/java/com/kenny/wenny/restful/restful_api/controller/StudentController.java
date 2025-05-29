@@ -2,6 +2,8 @@ package com.kenny.wenny.restful.restful_api.controller;
 
 import com.kenny.wenny.restful.restful_api.model.Student;
 import lombok.val;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,5 +30,10 @@ public class StudentController {
         return ResponseEntity.ok(
                 List.of(firstStudent, secondStudent)
         );
+    }
+
+    @GetMapping("/violeta")
+    public ResponseEntity<Student> getStudentByName() {
+        return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).build();
     }
 }
