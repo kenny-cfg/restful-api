@@ -21,6 +21,9 @@ public class StudentController {
     @GetMapping("/{name}")
     public ResponseEntity<Student> getStudentByName(@PathVariable String name) {
         val student = studentService.getByName(name);
+        if (student == null) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(student);
     }
 
