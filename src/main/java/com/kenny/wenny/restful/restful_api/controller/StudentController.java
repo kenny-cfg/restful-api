@@ -15,14 +15,16 @@ public class StudentController {
     @GetMapping
     @ResponseBody
     public List<Student> getStudent() {
-        val firstStudent = new Student();
-        firstStudent.setAge(25);
-        firstStudent.setName("John");
-        firstStudent.setCourse("Java");
-        val secondStudent = new Student();
-        secondStudent.setAge(44);
-        secondStudent.setName("Cynthia");
-        secondStudent.setCourse("Python");
+        val firstStudent = Student.builder()
+                .age(25)
+                .name("John")
+                .course("Java")
+                .build();
+        val secondStudent = Student.builder()
+                .age(30)
+                .name("Barbara")
+                .course("Python")
+                .build();
         return List.of(firstStudent, secondStudent);
     }
 }
