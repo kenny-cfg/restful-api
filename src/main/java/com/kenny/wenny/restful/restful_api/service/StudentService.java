@@ -6,18 +6,19 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class StudentService {
     private ArrayList<Student> students = new ArrayList<>();
 
-    public Student getByName(String name) {
+    public Optional<Student> getByName(String name) {
         for (Student student : students) {
             if (student.getName().equals(name)) {
-                return student;
+                return Optional.of(student);
             }
         }
-        return null; // TODO Talk about this in a mo
+        return Optional.empty();
     }
 
     public List<Student> getAllStudents() {
