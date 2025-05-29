@@ -1,7 +1,9 @@
 package com.kenny.wenny.restful.restful_api.controller;
 
 import com.kenny.wenny.restful.restful_api.model.Student;
+import com.kenny.wenny.restful.restful_api.service.StudentService;
 import lombok.val;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -15,21 +17,13 @@ import java.util.List;
 @Controller
 @RequestMapping("/student")
 public class StudentController {
+    @Autowired
+    private StudentService studentService;
+
     @GetMapping
-    public ResponseEntity<List<Student>> getStudent() {
-        val firstStudent = Student.builder()
-                .age(25)
-                .name("John")
-                .course("Java")
-                .build();
-        val secondStudent = Student.builder()
-                .age(90)
-                .name("Steve")
-                .course("Python")
-                .build();
-        return ResponseEntity.ok(
-                List.of(firstStudent, secondStudent)
-        );
+    public ResponseEntity<List<Student>> getAllStudents() {
+        val students = studentService.getAllStudents();
+        return ResponseEntity.ok(students);
     }
 
     @GetMapping("/violeta")
