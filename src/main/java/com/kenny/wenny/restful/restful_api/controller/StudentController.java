@@ -8,9 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,10 +18,22 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    @GetMapping("/{name}")
+    public ResponseEntity<Student> getStudentByName(@PathVariable String name) {
+        val student = studentService.getByName(name);
+        return ResponseEntity.ok(student);
+    }
+
     @GetMapping
     public ResponseEntity<List<Student>> getAllStudents() {
         val students = studentService.getAllStudents();
         return ResponseEntity.ok(students);
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> createStudent(@RequestBody Student student) {
+        studentService.addStudent(student);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/violeta")
