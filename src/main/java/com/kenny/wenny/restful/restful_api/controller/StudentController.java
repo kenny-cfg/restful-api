@@ -2,6 +2,7 @@ package com.kenny.wenny.restful.restful_api.controller;
 
 import com.kenny.wenny.restful.restful_api.model.Student;
 import com.kenny.wenny.restful.restful_api.service.StudentService;
+import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,9 +15,9 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/student")
+@RequiredArgsConstructor
 public class StudentController {
-    @Autowired
-    private StudentService studentService;
+    private final StudentService studentService;
 
     @GetMapping("/{name}")
     public ResponseEntity<Student> getStudentByName(@PathVariable String name) {
